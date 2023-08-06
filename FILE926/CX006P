@@ -1,0 +1,76 @@
+//*-------------------------------------------------
+//*        Cobol 6 for Z/OS batch compiler
+//*-------------------------------------------------
+//CX006P   PROC PROG=,
+//             CPYBK=,
+//             NAME=,
+//             COBPARM=,
+//             LNKPARM=
+//*-----------------------------------------------
+//*        Enterprise COBOL 6 for z/OS
+//*-----------------------------------------------
+//COBOL    EXEC PGM=IGYCRCTL,
+//             REGION=0M,
+//             PARM='OBJECT,APOST,MAP,XREF,OFFSET,RENT,&COBPARM'
+//STEPLIB  DD  DSNAME=ACSNS.ENTCOBOL.V6R2M0.SIGYCOMP,DISP=SHR
+//         DD  DSNAME=SYS1.CEE.SCEERUN,DISP=SHR
+//         DD  DSNAME=SYS1.CEE.SCEERUN2,DISP=SHR
+//*        DD  DSNAME=ACSNS.CICS.PLKP.SDFHLOAD,DISP=SHR
+//SYSIN    DD  DSN=&NAME..ISPF.LIBRARY.F926(&PROG),DISP=SHR
+//SYSLIB   DD  DISP=SHR,DSN=&CPYBK..COPYLIB
+//         DD  DISP=SHR,DSN=ENXLTNP.COPYLIB
+//         DD  DISP=SHR,DSN=ENMISNP.COPYLIB
+//         DD  DSN=&NAME..ISPF.LIBRARY,DISP=SHR
+//         DD  DSN=&NAME..ISPF.LIBRARY.F926,DISP=SHR
+//         DD  DISP=SHR,DSN=ENMISNT.DSECTLIB
+//         DD  DISP=SHR,DSN=ENMISNP.DSECTLIB
+//         DD  DISP=SHR,DSN=SYS1.COPYLIB
+//         DD  DISP=SHR,DSN=ACSNS.MQS.LFQ1.SCSQCOBC    <-- MQ MACRO
+//*YSDEBUG DD  DSN=APSP.DEBUG.LIBRARY(&PROG),DISP=SHR
+//SYSPRINT DD  SYSOUT=*
+//SYSLIN   DD  DSN=&&LOADSET,
+//             UNIT=VIO,
+//             DISP=(MOD,PASS),
+//             SPACE=(TRK,(5,5))
+//SYSUT1   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT2   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT3   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT4   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT5   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT6   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT7   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT8   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT9   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT10  DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT11  DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT12  DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT13  DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT14  DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSUT15  DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSMDECK DD  UNIT=SYSALLDA,SPACE=(CYL,(1,1)),VOL=(,,,1)
+//*-----------------------------------------------
+//*        Link Edit
+//*-----------------------------------------------
+//LKED     EXEC PGM=IEWBLINK,
+//             COND=((5,LT,COBOL)),
+//             REGION=0M,
+//             PARM='&LNKPARM,XREF,LIST,LET,MAP'
+//SYSLIB   DD  DISP=SHR,DSN=&NAME..ISPF.OBJ
+//         DD  DISP=SHR,DSNAME=SYS1.CEE.SCEELKEX
+//         DD  DISP=SHR,DSNAME=SYS1.CEE.SCEELKED
+//         DD  DISP=SHR,DSNAME=SYS1.CEE.SCEERUN
+//         DD  DISP=SHR,DSNAME=SYS1.CEE.SCEECICS
+//         DD  DISP=SHR,DSN=SYS2.LOF.AUTHLIB
+//*        DD  DISP=SHR,DSN=ACSNS.CICS.PLKP.SDFHLOAD
+//         DD  DISP=SHR,DSN=ACSNS.CA7.R12M1.MSMA.CAL2LOAD
+//         DD  DISP=SHR,DSN=ENXLTNP.LOADLIB
+//         DD  DISP=SHR,DSN=ENMISNP.LOADLIB
+//         DD  DISP=SHR,DSN=ENMISNT.LOADLIB
+//         DD  DISP=SHR,DSN=EXEDINP.LOAD
+//         DD  DISP=SHR,DSN=ACSNS.MQS.LFQ1.SCSQLOAD    <-- MQSTUB
+//         DD  DISP=SHR,DSN=SUPRANT.TESTLIB
+//SYSLIN   DD  DSN=&&LOADSET,DISP=(OLD,DELETE)
+//SYSUT1   DD  UNIT=VIO,SPACE=(CYL,(1,1))
+//SYSPRINT DD  SYSOUT=*
+//SYSLMOD  DD  DSN=&NAME..ISPF.OBJ(&PROG),DISP=SHR
+//*-----------------------------------------------

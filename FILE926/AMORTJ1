@@ -1,0 +1,23 @@
+//useridJ  JOB (5000,'AMORT MORTGAGE CALCULATOR '),
+//             'AMORT',
+//             CLASS=S,REGION=60M,
+//             MSGCLASS=R,
+//             MSGLEVEL=(1,1)
+//JOBLIB   DD  DISP=SHR,DSN=userid.ISPF.OBJ
+//*
+//AMORT    PROC PRM=''
+//*
+//S010     EXEC PGM=AMORT,PARM='&PRM/'
+//SYSOUT   DD SYSOUT=*
+//SCHEDULE DD SYSOUT=*
+//*
+//         PEND
+//J010     EXEC AMORT,
+//             PRM='1--000000000-000060300-02-00-05999'
+//*
+//*                 Z--$$$$$$$$$-$$$$$$$$$-YY-MM-INTER
+//*                 Z--PRINCIPAL-PAYMENTCC-YY-MM-INTER
+//*
+//*                 1--000000000-000060300-02-00-05999'
+//*                 2--000013600-000000000-00-24-05999'
+//*                 3--000013600-000060300-00-00-05999'

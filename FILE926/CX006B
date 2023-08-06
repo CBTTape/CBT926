@@ -1,0 +1,28 @@
+//useridC  JOB (861310,'Z/OS batch COBOL 6'),
+//             'Z/OS batch COBOL 6',
+//             CLASS=S,
+//             MSGCLASS=R,
+//             MSGLEVEL=(1,1)
+//*
+//PROCLIB  JCLLIB ORDER=userid.ISPF.LIBRARY.F926
+//*
+//*-------------------------------------------------
+//*
+//*  IBM Enterprise COBOL for z/OS
+//*               Version 6 Release 2 Modification 0
+//*
+//*-------------------------------------------------
+//J010     EXEC PROC=CX006P,
+//             NAME=userid,
+//             CPYBK=ENXLTNT,
+//             COBPARM='NODYNAM,OPTIMIZE(1),ARCH(11)',  *NORMAL VALUES
+//*            COBPARM='OPT,DYNAM,RES',             *CALLED PROGRAMS
+//*            COBPARM='TEST(NONE,SYM,SEPARATE)',   *DEBUG VALUES
+//             LNKPARM='RMODE=ANY',                 *RMODE(24)
+//*            LEVEL='SKIP    ',
+//*
+//             PROG=AMORT
+//*
+//COBOL.SYSIN  DD DISP=SHR,DSN=userid.ISPF.LIBRARY.F926(&PROG)
+//LKED.SYSLMOD DD DISP=SHR,DSN=userid.ISPF.OBJ(AMORT)
+//*-------------------------------------------------
